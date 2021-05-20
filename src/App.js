@@ -7,17 +7,21 @@ import { connect } from 'react-redux';
 function App(props) {
 
   useEffect(() => {
-    window.addEventListener('beforeunload', keepOnPage);
+    window.addEventListener('unload', keepOnPage);
+
     return function cleanup() {
+      window.removeEventListener("unload", null)
       // 
       console.log(props.user);
     }
   }, []);
 
   const keepOnPage = (e) => {
-    if (props.user) {
-      localStorage.setItem('user', JSON.stringify(props.user));
-    }
+     
+      if (props.user) {
+        localStorage.setItem('user', JSON.stringify(props.user));
+      }
+
     //  localStorage.setItem('storeUser', localStorage.getItem('user'));
   }
   // console.log(props);
@@ -33,6 +37,7 @@ function App(props) {
   );
 }
 const mapStateToProps = (state) => {
+  console.log(state);
   const { user, storedUser } = state.User;
   return { user, storedUser }
 }

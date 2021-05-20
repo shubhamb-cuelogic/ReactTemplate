@@ -1,14 +1,15 @@
 import { LOGIN_USER, STORE_USER, LOGOUT_USER, GET_USER } from './constants';
 
 const getUserData = () => {
-    if (localStorage.getItem('user')) {
-        console.log('getuse redux called')
-        return JSON.parse(localStorage.getItem('user'));
+    if(!localStorage.getItem('user')){
+        return null
     }
-    return null
+    const user = localStorage.getItem('user');
+    return user ? (typeof (user) == 'object' ? user : JSON.parse(user)) : null;
 }
+
 const INITIAL_STATE = {
-    user: getUserData(),
+    user: null,
     //storedUser: null
 };
 

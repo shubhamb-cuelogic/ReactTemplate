@@ -11,7 +11,7 @@ function Login(props) {
     const history = useHistory();
 
     const handleSubmit = async () => {
-        localStorage.setItem('user', JSON.stringify({ email, password }))
+       localStorage.setItem('user', JSON.stringify({ email, password }))
         props.loginUser({ email, password });
         // let res = await AuthService.logIn({ email, password })
         // console.log(res);
