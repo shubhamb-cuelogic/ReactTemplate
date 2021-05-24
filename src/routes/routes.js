@@ -1,24 +1,29 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 
-const Home = React.lazy(() => import("../pages/barChart"));
+const BarChart = React.lazy(() => import("../pages/barChart"));
 const Login = React.lazy(() => import("../components/Login"));
-const ComponentA = React.lazy(() => import("../pages/barChart2"));
-const ComponentB = React.lazy(() => import("../pages/lineChart"));
+const BarChart2 = React.lazy(() => import("../pages/barChart2"));
+const LineChart = React.lazy(() => import("../pages/lineChart"));
 const Signup = React.lazy(() => import("../components/Signup"));
-const Test = React.lazy(() => import("../pages/forceDataGraph/index"));
+const ForceGraph = React.lazy(() => import("../pages/forceDataGraph/index"));
 const Svg = React.lazy(() => import("../pages/createSvgImg/SHome"));
 const donut = React.lazy(() => import("../pages/donutChart"));
-const PiChart=React.lazy(() => import("../pages/piChart"));
-
+const PieChart = React.lazy(() => import("../pages/piChart"));
+const DrillDownpieChartParent = React.lazy(() => import("../pages/DrillDownpieChart"));
+const TreeChart = React.lazy(() => import("../pages/TreeChart/index"));
+const Responcive= React.lazy(() => import("../pages/responsiveBarChart"))
 const protectedRoutes = [
-    { path: '/home', component: Home },
-    { path: '/com-a', component: ComponentA },
-    { path: '/com-b', component: ComponentB },
-    { path: '/test', component: Test },
+    { path: '/bar-chart', component: BarChart },
+    { path: '/bar-chart2', component: BarChart2 },
+    { path: '/line-chart', component: LineChart },
+    { path: '/force-chart', component: ForceGraph },
     { path: '/svg', component: Svg },
-    { path: '/pi-chart', component: donut },
-    { path: '/pi-chart2', component: PiChart },
+    { path: '/pie-chart', component: donut },
+    { path: '/pie-chart2', component: PieChart },
+    { path: '/drill-down', component: DrillDownpieChartParent },
+    { path: '/tree-chart', component: TreeChart },
+    { path: '/responsive', component: Responcive },
     {
         path: "/",
         exact: true,

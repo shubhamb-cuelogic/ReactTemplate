@@ -110,7 +110,7 @@ class BarChartParent extends Component {
             <React.Fragment>
                 <BarChart
                     width={800}
-                    height={450}
+                    height={550}
                     data={
                         this.state.selectedValue === "US" ? data.USData : data.JapanData
                     }

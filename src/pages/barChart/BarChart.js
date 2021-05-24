@@ -1,32 +1,51 @@
 import * as d3 from "d3";
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 
 const duration = 500;
-function BarChart({ width, height, data, yAxisTitle }) {
+function BarChart({ data, yAxisTitle }) {
+  const ref = useRef();
   const margin = {
     top: 60,
     bottom: 100,
     left: 80,
     right: 40,
   };
-  const innerWidth = width - margin.left - margin.right;
-  const innerHeight = height - margin.top - margin.bottom;
-  const ref = useRef();
+  // const getWidth = () => {
+  //   return this.ref.current.parentElement.offsetWidth;
+  // }
+  // const getHeight = () => {
+  //   return this.ref.current.parentElement.offsetHeight;
+  // }
+  // const [width] = useState(getWidth());
+  // const [height] = useState(getHeight());
+  ;
+
 
   useEffect(() => {
-    d3.select(ref.current)
-      .attr("width", width)
-      .attr("height", height)
-      .append("g")
-      .attr("transform", `translate(${margin.left}, ${margin.top})`);
-  }, []); 
+    window.addEventListener("resize", draw);
+    draw()
+  }, []);
 
   useEffect(() => {
     draw();
   }, [data]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const draw = () => {
- 
+    const node = d3.select(ref.current);
+
+    const bounds = ref.current ? node.node().getBoundingClientRect() : { width: 0, height: 0 };
+    const width = bounds.width;
+    const height = bounds.height;
+
+    const innerWidth = width - margin.left - margin.right;
+    const innerHeight = height - margin.top - margin.bottom
+
+    node
+      .attr("width", width)
+      .attr("height", height)
+      .append("g")
+      .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
     const xScale = d3
       .scaleBand()
       .domain(data.map((d) => d.year))
@@ -134,7 +153,7 @@ function BarChart({ width, height, data, yAxisTitle }) {
 
   return (
     <div className="chart">
-      <svg ref={ref}></svg>
+      <svg style={{ width: '100%', height: '100%' }} ref={ref}></svg>
     </div>
   );
 }

@@ -43,25 +43,25 @@ export default function SideMenu(props) {
         >
             <h3 styles={{ marginLeft: 20 }}>Demo app</h3>
             <Divider />
-            <ListItem selected={history.location.pathname === '/home'} button onClick={() => history.push('/home')}>
+            <ListItem selected={history.location.pathname === '/bar-chart'} button onClick={() => history.push('/bar-chart')}>
                 <ListItemIcon>
                     <BarChartIcon />
                 </ListItemIcon>
                 <ListItemText primary="BarChart-1" />
             </ListItem>
-            <ListItem button selected={history.location.pathname === '/com-a'} onClick={() => history.push('/com-a')}>
+            <ListItem button selected={history.location.pathname === '/bar-chart2'} onClick={() => history.push('/bar-chart2')}>
                 <ListItemIcon>
                     <BarChartIcon />
                 </ListItemIcon>
                 <ListItemText primary="BarChart-2" />
             </ListItem>
-            <ListItem button selected={history.location.pathname === '/com-b'} onClick={() => history.push('/com-b')}>
+            <ListItem button selected={history.location.pathname === '/line-chart'} onClick={() => history.push('/line-chart')}>
                 <ListItemIcon>
                     <MultilineChartIcon />
                 </ListItemIcon>
                 <ListItemText primary="Line-chart" />
             </ListItem>
-            <ListItem button selected={history.location.pathname === '/test'} onClick={() => history.push('/test')}>
+            <ListItem button selected={history.location.pathname === '/force-chart'} onClick={() => history.push('/force-chart')}>
                 <ListItemIcon>
                     <DraftsIcon />
                 </ListItemIcon>
@@ -73,17 +73,35 @@ export default function SideMenu(props) {
                 </ListItemIcon>
                 <ListItemText primary="Create svg" />
             </ListItem>
-            <ListItem button selected={history.location.pathname === '/pi-chart'} onClick={() => history.push('/pi-chart')}>
+            <ListItem button selected={history.location.pathname === '/pie-chart'} onClick={() => history.push('/pie-chart')}>
                 <ListItemIcon>
                     <DonutSmallIcon />
                 </ListItemIcon>
                 <ListItemText primary="Donut-chart" />
             </ListItem>
-            <ListItem button selected={history.location.pathname === '/pi-chart2'} onClick={() => history.push('/pi-chart2')}>
+            <ListItem button selected={history.location.pathname === '/pie-chart2'} onClick={() => history.push('/pie-chart2')}>
                 <ListItemIcon>
                     <ExtensionIcon />
                 </ListItemIcon>
                 <ListItemText primary="Pi-Chart" />
+            </ListItem>
+            <ListItem button selected={history.location.pathname === '/drill-down'} onClick={() => history.push('/drill-down')}>
+                <ListItemIcon>
+                    <ExtensionIcon />
+                </ListItemIcon>
+                <ListItemText primary="Drill-down" />
+            </ListItem>
+            <ListItem button selected={history.location.pathname === '/tree-chart'} onClick={() => history.push('/tree-chart')}>
+                <ListItemIcon>
+                    <ExtensionIcon />
+                </ListItemIcon>
+                <ListItemText primary="Tree-Chart" />
+            </ListItem>
+            <ListItem button selected={history.location.pathname === '/responsive'} onClick={() => history.push('/responsive')}>
+                <ListItemIcon>
+                    <ExtensionIcon />
+                </ListItemIcon>
+                <ListItemText primary="Responsive" />
             </ListItem>
         </List>
     );

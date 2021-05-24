@@ -3,8 +3,8 @@ import * as d3 from 'd3';
 import { create } from 'yup/lib/Reference';
 
 export default function PiChart() {
-    
 
+    const [outer, setOuter] = useState(200)
     const generateData = (value, length = 5) =>
         d3.range(length).map((item, index) => ({
             date: index,
@@ -29,7 +29,7 @@ export default function PiChart() {
     const createArc = d3
         .arc()
         .innerRadius(100)
-        .outerRadius(200)
+        .outerRadius(outer)
 
     const colors = d3.scaleOrdinal(d3.schemeCategory10);
     const format = d3.format(".2f");
@@ -60,6 +60,7 @@ export default function PiChart() {
             .attr("d", createArc)
             .attr("fill", (d, i) => colors(i))
             .on('mouseover', function (d, i) {
+                setOuter(240);
                 d3.select(this).transition()
                     .duration('50')
                     .attr('opacity', '.85');
@@ -72,6 +73,7 @@ export default function PiChart() {
                 //         .style("top", (d3.event.pageY - 15) + "px");
             })
             .on('mouseout', function (d, i) {
+                setOuter(200)
                 d3.select(this).transition()
                     .duration('50')
                     .attr('opacity', '1');
@@ -103,7 +105,7 @@ export default function PiChart() {
     }, [dataSet])
     return (
         <>
-        <div></div>
+            <div></div>
             <button onClick={changeData}>Change</button>
             <svg width={500} height={500}>
                 <g

@@ -8,7 +8,12 @@ export default class BarChart extends Component {
         this.myRef = React.createRef();
         this.dataset = [100, 200, 300, 400, 500]
     }
+
     componentDidMount() {
+        window.addEventListener("resize", this.draw.bind(this));
+        this.draw()
+    }
+    draw = () => {
         let size = 500;
         const margin = {
             top: 60,
@@ -16,12 +21,24 @@ export default class BarChart extends Component {
             left: 80,
             right: 40,
         };
-        const width = 950;
-        const height = 650;
+
+        let resizedFn;
+        // window.addEventListener("resize", () => {
+        //     clearTimeout(resizedFn);
+        //     resizedFn = setTimeout(() => {
+        //         this.redrawChart();
+        //     }, 200)
+        // });
+
+        const node = d3.select(this.myRef.current);
+        const bounds = this.myRef.current? node.node().getBoundingClientRect() : { width: 0, height: 0 };
+        const width = bounds.width;
+        const height = bounds.height;
+
         const innerWidth = width - margin.left - margin.right;
         const innerHeight = height - margin.top - margin.bottom;
 
-        d3.select(this.myRef.current)
+        node
             .attr('width', width)
             .attr('height', height)
             .attr('transform', `translate(${margin.left},${margin.top})`)
@@ -49,8 +66,10 @@ export default class BarChart extends Component {
                 enter
                     .append('rect')
                     .classed("bar", true)
+                    //.transition()
                     .attr("y", (d) => yScale(0))
                     .attr("height", 0)
+                //.attr("opacity", 0)
             )
             .attr('x', (d, i) => xScale(d))
             .style("fill", (d, i) => colorScale(i))
@@ -59,8 +78,9 @@ export default class BarChart extends Component {
             .attr('height', (d) => innerHeight - yScale(d))
             .transition()
             .duration(duration)
+            //.attr("opacity", 1)
             .delay((d, i) => (i * duration) / 10)
-            //.attr("transform", `translate(-50,${innerHeight / 2}) rotate(0)`)
+        // .attr("transform", `translate(-50,${innerHeight / 2}) rotate(0)`)
         chart
             .selectAll(".bar-label")
             .data(this.dataset)
@@ -78,10 +98,10 @@ export default class BarChart extends Component {
             .text((d) => d)
             .transition()
             .duration(duration)
-             .delay((d, i) => (i * duration) / 10)
+            .delay((d, i) => (i * duration) / 10)
             .attr("opacity", 1)
             .attr("y", (d) => yScale(d));
-            
+
 
         const xAxis = d3.axisBottom().scale(xScale);
 
@@ -103,8 +123,9 @@ export default class BarChart extends Component {
             .join("g")
             .classed("y axis", true)
             .attr("transform", "translate(0,0)")
-            .transition()
-            .duration(duration)
+            //.transition()
+            // .duration(duration)
+            .attr("opacity", 1)
             .call(yAxis);
 
         chart
@@ -145,8 +166,8 @@ export default class BarChart extends Component {
 
     render() {
         return (
-            <div className="chart" >
-                <svg ref={this.myRef}></svg>
+            <div className="barchart-container" >
+                <svg style={{ width: '100%', height: '100%' }} ref={this.myRef}></svg>
             </div>
         );
     }
