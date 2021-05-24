@@ -11,11 +11,11 @@ const AppRoute = ({ component: Component, layout: Layout, isAuthProtected, user,
         if (isAuthProtected && !user) {
             return (
 
-                <Redirect to={{ pathname: "/bar-chart", state: { from: props.location } }} />
+                <Redirect to={{ pathname: "/login", state: { from: props.location } }} />
             );
         } else if (!isAuthProtected && user) {
             return (
-                <Redirect to={{ pathname: "/home", state: { from: props.location } }} />
+                <Redirect to={{ pathname: "/bar-chart", state: { from: props.location } }} />
             );
         }
 

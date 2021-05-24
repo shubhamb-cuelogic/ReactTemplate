@@ -23,7 +23,7 @@ function LineChartParent() {
   }
 
   return (
-    <div className="App">
+    <div className=".bar-chart-container">
       <button onClick={regenerateData}>Change Data</button>
       <LineChart data={data} width={400} height={300} />
     </div>

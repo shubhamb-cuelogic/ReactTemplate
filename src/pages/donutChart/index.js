@@ -26,21 +26,26 @@ export default function PiChart() {
         .pie()
         .value(d => d.value)
         .sort(null);
-    const createArc = d3
-        .arc()
-        .innerRadius(100)
-        .outerRadius(outer)
+
 
     const colors = d3.scaleOrdinal(d3.schemeCategory10);
     const format = d3.format(".2f");
-
 
     // .domain(["Lorem ipsum", "dolor sit", "amet", "consectetur", "adipisicing", "elit", "sed", "do", "eiusmod", "tempor", "incididunt"])
     // .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
 
     React.useEffect(() => {
+        drawPieChart()
+    }, [dataSet])
+    const drawPieChart = () => {
         const data = createPie(dataSet);
         const group = d3.select(ref.current);
+
+         
+        const createArc = d3
+            .arc()
+            .innerRadius(radius-100)
+            .outerRadius(radius-20)
         const groupWithData = group.selectAll("g.arc").data(data);
 
         groupWithData.exit().remove();
@@ -102,12 +107,12 @@ export default function PiChart() {
             .style("font-size", 10)
             .text(d => format(d.value))
 
-    }, [dataSet])
+    }
     return (
         <>
             <div></div>
             <button onClick={changeData}>Change</button>
-            <svg width={500} height={500}>
+            <svg width="100%" height="100%" viewBox={(-width / 4) + ' ' + (-height / 10) + ' ' + width + ' ' + height}>
                 <g
                     ref={ref}
                     transform={`translate(${200} ${200})`}

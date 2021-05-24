@@ -109,6 +109,7 @@ class BarChartParent extends Component {
         return (
             <React.Fragment>
                 <BarChart
+                    style={{ width: '100%', height: '95%' }}
                     width={800}
                     height={550}
                     data={

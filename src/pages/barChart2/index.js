@@ -13,6 +13,10 @@ export default class BarChart extends Component {
         window.addEventListener("resize", this.draw.bind(this));
         this.draw()
     }
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.draw)
+    }
+    
     draw = () => {
         let size = 500;
         const margin = {
@@ -31,7 +35,7 @@ export default class BarChart extends Component {
         // });
 
         const node = d3.select(this.myRef.current);
-        const bounds = this.myRef.current? node.node().getBoundingClientRect() : { width: 0, height: 0 };
+        const bounds = this.myRef.current ? node.node().getBoundingClientRect() : { width: 0, height: 0 };
         const width = bounds.width;
         const height = bounds.height;
 

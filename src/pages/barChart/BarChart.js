@@ -24,6 +24,7 @@ function BarChart({ data, yAxisTitle }) {
   useEffect(() => {
     window.addEventListener("resize", draw);
     draw()
+    return () => window.removeEventListener("resize", draw)
   }, []);
 
   useEffect(() => {
@@ -34,11 +35,12 @@ function BarChart({ data, yAxisTitle }) {
     const node = d3.select(ref.current);
 
     const bounds = ref.current ? node.node().getBoundingClientRect() : { width: 0, height: 0 };
-    const width = bounds.width;
-    const height = bounds.height;
+    const width = Math.abs(bounds.width);
+    const height = Math.abs(bounds.height);
 
-    const innerWidth = width - margin.left - margin.right;
-    const innerHeight = height - margin.top - margin.bottom
+    console.log(bounds.width, bounds.height)
+    const innerWidth = Math.abs(width - margin.left - margin.right);
+    const innerHeight = Math.abs(height - margin.top - margin.bottom);
 
     node
       .attr("width", width)
@@ -152,7 +154,7 @@ function BarChart({ data, yAxisTitle }) {
   };
 
   return (
-    <div className="chart">
+    <div className="bar-chart-container">
       <svg style={{ width: '100%', height: '100%' }} ref={ref}></svg>
     </div>
   );
