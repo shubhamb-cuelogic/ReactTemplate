@@ -1,36 +1,29 @@
 import React from 'react'
 import * as d3 from 'd3';
 import data from './data.json'
-import { zoom } from 'd3';
+
 export default function TreeComponent() {
     const ref = React.useRef(null);
-
+    const width=800;
+    const height=550
 
     React.useEffect(() => {
         const svg = d3.select(ref.current);
         const margin = { top: 0, right: 50, bottom: 0, left: 50 }
-        const innerWidth = 700 - margin.left - margin.right;
-        const innerHeight = 500 - margin.top - margin.bottom;
+        const innerWidth = width - margin.left - margin.right;
+        const innerHeight = height - margin.top - margin.bottom;
         const treeLayout = d3.tree()
             .size([innerHeight, innerWidth]);
 
         const g = svg
-            .attr('width', 800)
-            .attr('height', 600)
+            .attr('width', width)
+            .attr('height', height)
             .append('g')
-            .attr('transform', 'translate(`${margin.left},${margin.top}`)')
+            .attr('transform', `translate(${margin.left},${margin.top})`);
 
         svg.call(d3.zoom().on('zoom', (event) => {
             g.attr('transform', event.transform)
         }))
-        // svg.append('rect')
-        //     .attr('width', 750)
-        //     .attr('height', 550)
-        //     .attr('rx', 40)
-
-
-        // d3.json(data)
-        //     .then((data) => {
         const root = d3.hierarchy(data);
         const links = treeLayout(root).links();
         const linkPathGenerator = d3.linkHorizontal()
@@ -61,7 +54,7 @@ export default function TreeComponent() {
 
     return (
         <div>
-            <svg ref={ref} width="800" height="600"></svg>
+            <svg ref={ref} viewBox={"0 0 " + width + " " + height} width="100%" height="100%"></svg>
         </div>
     )
 }

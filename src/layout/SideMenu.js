@@ -103,6 +103,12 @@ export default function SideMenu(props) {
                 </ListItemIcon>
                 <ListItemText primary="Responsive" />
             </ListItem>
+            <ListItem button selected={history.location.pathname === '/sankey'} onClick={() => history.push('/sankey')}>
+                <ListItemIcon>
+                    <ExtensionIcon />
+                </ListItemIcon>
+                <ListItemText primary="Sankey-graph" />
+            </ListItem>
         </List>
     );
 }

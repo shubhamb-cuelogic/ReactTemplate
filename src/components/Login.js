@@ -15,7 +15,7 @@ function Login(props) {
         props.loginUser({ email, password });
         // let res = await AuthService.logIn({ email, password })
         // console.log(res);
-        history.push('/home');
+        history.push('/bar-chart');
     }
 
     return (

@@ -3,18 +3,12 @@ import * as d3 from 'd3';
 
 
 function LineChart(props) {
-    const ref = useRef(null);
-    const { data } = props;
+    const { data, width, height } = props;
 
     useEffect(() => {
         drawChart();
     }, [data]);
 
-    useEffect(() => {
-        window.addEventListener("resize", drawChart);
-        drawChart();
-        return () => window.removeEventListener("resize", drawChart)
-    }, []);
 
     const drawChart = () => {
         d3.select('#container')
@@ -23,25 +17,17 @@ function LineChart(props) {
         d3.select('#container')
             .select('.tooltip')
             .remove();
-        // Add logic to draw the chart here
-        const margin = { top: 50, right: 10, bottom: 50, left: 20 };
+         
+        const margin = { top: 50, right: 50, bottom: 50, left: 50 };
         const yMinValue = d3.min(data, d => d.value);
         const yMaxValue = d3.max(data, d => d.value);
         const xMinValue = d3.min(data, d => d.label);
         const xMaxValue = d3.max(data, d => d.label);
-
+    
         const svg = d3
             .select('#container')
             .append('svg')
-        //     .select(ref.current)
-        const bounds = ref.current ? svg.node().getBoundingClientRect() : { width: 0, height: 0 };
-        const width = Math.abs(bounds.width);
-        const height = Math.abs(bounds.height);
-
-
-        svg
-            .attr('width', width + margin.left + margin.right)
-            .attr('height', height + margin.top + margin.bottom)
+            .attr('viewBox','0 0 ' + width + ' ' + height)
             .append('g')
             .attr('transform', `translate(${margin.left},${margin.top})`);
 
@@ -49,11 +35,11 @@ function LineChart(props) {
         const xScale = d3
             .scaleLinear()
             .domain([xMinValue, xMaxValue])
-            .range([0, width]);
+            .range([10, width-10]);
 
         const yScale = d3
             .scaleLinear()
-            .range([height, 0])
+            .range([height-10, 10])
             .domain([0, yMaxValue]);
 
         const line = d3
@@ -130,10 +116,10 @@ function LineChart(props) {
             const xPos = d3.pointer(this)[0];
             const x0 = bisect(data, xScale.invert(xPos));
             const d0 = data[x0];
-            // focus.attr(
-            //     'transform',
-            //     `translate(${xScale(d0.label)},${yScale(d0.value)})`,
-            // );
+            focus.attr(
+                'transform',
+                `translate(${xScale(d0.label)},${yScale(d0.value)})`,
+            );
             tooltip
                 .transition()
                 .duration(300)
@@ -146,7 +132,7 @@ function LineChart(props) {
                 );
         }
     }
-    return <div ref={ref} id="container" style={{ width: '100%', height: '100%' }} />;
+    return <div id="container" className="bar-chart-container" style={{ width: '100%', height: '100%' }} />;
 }
 
 export default LineChart;

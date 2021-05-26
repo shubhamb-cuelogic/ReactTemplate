@@ -1,50 +1,39 @@
 import React, { Component } from 'react'
 import * as d3 from 'd3';
 
+
 const duration = 500;
 export default class BarChart extends Component {
     constructor(props) {
         super(props);
         this.myRef = React.createRef();
         this.dataset = [100, 200, 300, 400, 500]
+        this.width=750;
+        this.height=550;
     }
 
     componentDidMount() {
-        window.addEventListener("resize", this.draw.bind(this));
         this.draw()
-    }
-    componentWillUnmount() {
-        window.removeEventListener("resize", this.draw)
     }
     
     draw = () => {
         let size = 500;
         const margin = {
-            top: 60,
-            bottom: 100,
-            left: 80,
-            right: 40,
+            top: 50,
+            bottom: 50,
+            left: 50,
+            right: 50,
         };
 
-        let resizedFn;
-        // window.addEventListener("resize", () => {
-        //     clearTimeout(resizedFn);
-        //     resizedFn = setTimeout(() => {
-        //         this.redrawChart();
-        //     }, 200)
-        // });
-
+      
         const node = d3.select(this.myRef.current);
-        const bounds = this.myRef.current ? node.node().getBoundingClientRect() : { width: 0, height: 0 };
-        const width = bounds.width;
-        const height = bounds.height;
-
-        const innerWidth = width - margin.left - margin.right;
-        const innerHeight = height - margin.top - margin.bottom;
+        
+        const innerWidth = this.width - margin.left - margin.right;
+        const innerHeight = this.height - margin.top - margin.bottom;
 
         node
-            .attr('width', width)
-            .attr('height', height)
+            .attr('width', this.width)
+            .attr('height',this.height)
             .attr('transform', `translate(${margin.left},${margin.top})`)
             .append("g");
 
@@ -171,7 +160,7 @@ export default class BarChart extends Component {
     render() {
         return (
             <div className="barchart-container" >
-                <svg style={{ width: '100%', height: '100%' }} ref={this.myRef}></svg>
+                <svg viewBox={'0 0 ' + this.width + ' ' + this.height} style={{ width: '100%', height: '100%' }} ref={this.myRef}></svg>
             </div>
         );
     }
