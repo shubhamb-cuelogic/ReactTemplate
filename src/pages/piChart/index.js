@@ -58,43 +58,61 @@ function PieChart(props) {
             apples: [53245, 28479, 19697, 24037, 40245],
             oranges: [200, 200, 200, 200]
         };
-    
+
+        const format = d3.format(".2f");
         var width = 960,
-          height = 500,
-          radius = Math.min(width, height) / 2;
-    
+            height = 500,
+            radius = Math.min(width, height) / 2;
+
         var enterClockwise = {
             startAngle: 0,
             endAngle: 0
         };
-    
+
         var enterAntiClockwise = {
             startAngle: Math.PI * 2,
             endAngle: Math.PI * 2
         };
-    
+
         var color = d3.scaleOrdinal(d3.schemeCategory10);
-    
+
         var pie = d3.pie()
-          .sort(null);
-    
+            .sort(null);
+
         var arc = d3.arc()
-          .innerRadius(radius - 100)
-          .outerRadius(radius - 20);
-    
+            .innerRadius(radius - 100)
+            .outerRadius(radius - 20);
+
         var svg = d3.select(ref.current)
-             .attr('id', 'Donut-chart-render')
-             .attr("width", '100%')
-             .attr("height", '100%')
-             .attr('viewBox', (-width / 2) + ' ' + (-height / 2) + ' ' + width + ' ' + height)
-             .attr('preserveAspectRatio', 'xMinYMin')
-    
-        var path = svg.selectAll("path")
-          .data(pie(dataset.apples))
-          .enter().append("path")
+            .attr('id', 'Donut-chart-render')
+            .attr("width", '100%')
+            .attr("height", '100%')
+            .attr('viewBox', (-width / 2) + ' ' + (-height / 2) + ' ' + width + ' ' + height)
+            .attr('preserveAspectRatio', 'xMinYMin')
+
+     
+        const groupWithData = svg.selectAll("g.arc").data(pie(dataset.apples))
+        groupWithData.exit().remove();
+
+        const groupWithUpdate = groupWithData
+            .enter()
+            .append("g")
+            .attr('class', 'arc')
+
+        const path = groupWithUpdate
+            .append('path')
+            .merge(groupWithData.select("path.arc"));
+
+
+        // var path = svg.selectAll("path")
+        //     .data(pie(dataset.apples))
+        //     .enter().append("path")
+        path
+            .attr("class", "arc")
             .attr("fill", function (d, i) { return color(i); })
             .attr("d", arc(enterClockwise))
             .each(function (d) {
+                console.log(d)
                 this._current = {
                     data: d.data,
                     value: d.value,
@@ -102,20 +120,29 @@ function PieChart(props) {
                     endAngle: enterClockwise.endAngle
                 }
             })
-            .text(d => (d.value));
 
-    
+
         path.transition()
             .duration(750)
             .attrTween("d", arcTween);
 
-    
+        const text = groupWithUpdate
+            .append('text')
+            .merge(groupWithData.select('text'))
+
+        text
+            .attr("text-anchor", "middle")
+            .attr("alignment-baseline", "middle")
+            .attr("transform", d => `translate(${arc.centroid(d)})`)
+            .style("fill", "white")
+            .style("font-size", 10)
+            .text(d => format(d.value))
         d3.selectAll("input").on("change", change);
-    
+
         var timeout = setTimeout(function () {
             d3.select("input[value=\"oranges\"]").property("checked", true).each(change);
         }, 2000);
-    
+
         function change() {
             clearTimeout(timeout);
             path = path.data(pie(dataset[this.value]));
@@ -132,16 +159,16 @@ function PieChart(props) {
                         endAngle: enterAntiClockwise.endAngle
                     };
                 }); // store the initial values
-    
+
             path.exit()
                 .transition()
                 .duration(750)
                 .attrTween('d', arcTweenOut)
                 .remove() // now remove the exiting arcs
-    
+
             path.transition().duration(750).attrTween("d", arcTween); // redraw the arcs
         }
-    
+
         function arcTween(a) {
             var i = d3.interpolate(this._current, a);
             this._current = i(0);
@@ -156,13 +183,13 @@ function PieChart(props) {
                 return arc(i(t));
             };
         }
-    
-    
+
+
         function type(d) {
             d.value = +d.value;
             return d;
         }
-    
+
     }, [])
 
     return <svg ref={ref} width="800" height="400">

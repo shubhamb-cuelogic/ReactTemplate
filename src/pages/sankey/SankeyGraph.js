@@ -42,7 +42,9 @@ const SankeyLink = ({ link, color }) => {
                 stroke: color,
                 strokeWidth: Math.max(1, link.width)
             }}
-        />
+        >
+            <title>{link.value}</title>
+        </path>
     )
 };
 

@@ -6,9 +6,9 @@ function BarChart({ width, height, data, yAxisTitle }) {
   const ref = useRef();
   const margin = {
     top: 60,
-    bottom: 100,
-    left: 80,
-    right: 40,
+    bottom: 60,
+    left: 60,
+    right: 60,
   };
 
 
@@ -19,9 +19,10 @@ function BarChart({ width, height, data, yAxisTitle }) {
 
   const draw = () => {
     const node = d3.select(ref.current);
+
     const innerWidth = Math.abs(width - margin.left - margin.right);
     const innerHeight = Math.abs(height - margin.top - margin.bottom);
-
+    var div = d3.select('.bar-chart-container').append("div").attr("class", "barchart-toolTip");
     node
       .attr("width", width)
       .attr("height", height)
@@ -52,21 +53,21 @@ function BarChart({ width, height, data, yAxisTitle }) {
           .classed("bar", true)
           .attr("y", (d) => yScale(0))
           .attr("height", 0)
-          .on("mouseover", function () {
-            console.log('mouseover')
+          .on("mouseover", function (d, i) {
+            div.style("left", d.pageX + 10 + "px");
+            div.style("top", d.pageY - 25 + "px");
+            div.style("display", "inline-block");
+            div.html((i.year) + "<br>" + (i.value) + "%");
             d3.select(this).transition()
               .duration('50')
               .attr('opacity', '.85')
-
-
           })
-          .on("mouseout", function () {
-            console.log('mouseout')
+          .on("mouseout", function (d) {
+            div.style("display", "none");
             d3.select(this).transition()
               .duration('50')
               .attr('opacity', '1');
           })
-
       )
       .attr("x", (d) => xScale(d.year))
       .style("fill", (d, i) => colorScale(i))
@@ -76,6 +77,7 @@ function BarChart({ width, height, data, yAxisTitle }) {
       .delay((d, i) => (i * duration) / 10)
       .attr("height", (d) => innerHeight - yScale(d.value))
       .attr("y", (d) => yScale(d.value))
+
 
 
     chart
@@ -91,6 +93,7 @@ function BarChart({ width, height, data, yAxisTitle }) {
           .attr("dy", -6)
           .attr("opacity", 0)
 
+
       )
       .attr("x", (d) => xScale(d.year) + xScale.bandwidth() / 2)
       .text((d) => d.value)
@@ -99,6 +102,7 @@ function BarChart({ width, height, data, yAxisTitle }) {
       .delay((d, i) => (i * duration) / 10)
       .attr("opacity", 1)
       .attr("y", (d) => yScale(d.value));
+
 
 
     const xAxis = d3.axisBottom().scale(xScale);
@@ -149,6 +153,25 @@ function BarChart({ width, height, data, yAxisTitle }) {
       .style("font-size", "20px")
       .style("text-anchor", "middle")
       .text((d) => d);
+
+    var legend = node.selectAll(".legend")
+      .data(data)
+      .enter().append("g")
+      .attr("class", "legend")
+      .attr("transform", function (d, i) { return "translate(0," + i * 20 + ")"; });
+
+    legend.append("rect")
+      .attr("x", width + 18)
+      .attr("width", 18)
+      .attr("height", 18)
+      .style("fill", (d, i) => colorScale(i));
+
+    legend.append("text")
+      .attr("x", width + 40)
+      .attr("y", 9)
+      .attr("dy", ".35em")
+      .style("text-anchor", "start")
+      .text(function (d) { return d.year; });
   };
 
   return (
