@@ -1,22 +1,16 @@
 import React from 'react';
 import data from './data.json';
-import { Force } from "./Force";
+import ForceGraph from './ForceGraph';
+ 
 
-function Test() {
-  const nodeHoverTooltip = React.useCallback((node) => {
-    return `<div>${node.name}</div>`;
-  }, []);
+function ForceGraphParent() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        Force Graph Example
-      </header>
-      <section className="Main">
-        <Force linksData={data.links} nodesData={data.nodes} nodeHoverTooltip={nodeHoverTooltip} />
-      </section>
+      Force Graph Example
+      <ForceGraph  data={data} />
     </div>
   );
 }
 
-export default Test;
+export default ForceGraphParent;
