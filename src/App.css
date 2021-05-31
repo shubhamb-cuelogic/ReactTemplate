@@ -93,3 +93,22 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 60%;
 }
+.node rect {
+  fill-opacity: .9;
+  shape-rendering: crispEdges;
+}
+
+.node text {
+  pointer-events: none;
+}
+
+.link {
+  fill: none;
+  stroke: #000;
+  stroke-opacity: .12;
+}
+
+.gradient-link {
+  fill: none;
+  stroke-opacity: .5;
+}

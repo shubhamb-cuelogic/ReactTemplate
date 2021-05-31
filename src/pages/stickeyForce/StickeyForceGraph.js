@@ -84,6 +84,8 @@ export default function StickeyForceGraph({ data }) {
     const clamp = (x, lo, hi) => {
         return x < lo ? lo : x > hi ? hi : x
     }
+    
+      
 
     return (
         <div>
