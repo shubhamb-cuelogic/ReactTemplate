@@ -9,7 +9,7 @@ export default function ScatterPlot() {
     }
 
     const width = 550 - margin.left - margin.right;
-    const height = 400 - margin.top - margin.bottom;
+    const height = 300 - margin.top - margin.bottom;
     const colorScale = d3.scaleOrdinal(d3.schemeCategory10);
 
     useEffect(() => {

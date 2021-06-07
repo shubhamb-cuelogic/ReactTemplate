@@ -3,9 +3,9 @@ import data from './data.json'
 import * as d3 from 'd3';
 
 export default function BoxPlot() {
-   
+
     const bins = d3.bin()
-        .thresholds(15)
+        .thresholds(10)
         .value(d => d.carat)
         (data)
         .map(bin => {
@@ -24,7 +24,8 @@ export default function BoxPlot() {
             bin.outliers = bin.filter(v => v.y < r0 || v.y > r1); // TODO
             return bin;
         })
-    
+    console.log(data, bins)
+
     const ref = useRef(null);
     const margin = {
         top: 10, right: 100, bottom: 30, left: 60
@@ -62,10 +63,12 @@ export default function BoxPlot() {
         const x = d3.scaleLinear()
             .domain([d3.min(bins, d => d.x0), d3.max(bins, d => d.x1)])
             .rangeRound([margin.left, width - margin.right])
+            
 
         const y = d3.scaleLinear()
             .domain([d3.min(bins, d => d.range[0]), d3.max(bins, d => d.range[1])]).nice()
             .range([height - margin.bottom, margin.top])
+        
 
         const yAxis = g => g
             .attr("transform", `translate(${margin.left},0)`)
@@ -75,7 +78,7 @@ export default function BoxPlot() {
         const xAxis = g => g
             .attr("transform", `translate(0,${height - margin.bottom})`)
             .call(d3.axisBottom(x).ticks(15).tickSizeOuter(0))
-            
+
         const g = svg.append("g")
             .selectAll("g")
             .data(bins)
@@ -97,25 +100,25 @@ export default function BoxPlot() {
         Z
       `);
 
-    //     g.append("path")
-    //         .attr("stroke", "currentColor")
-    //         .attr("stroke-width", 2)
-    //         .attr("d", d => `
-    //     M${x(d.x0) + 1},${y(d.quartiles[1])}
-    //     H${x(d.x1)}
-    //   `);
+        g.append("path")
+            .attr("stroke", "currentColor")
+            .attr("stroke-width", 2)
+            .attr("d", d => `
+        M${x(d.x0) + 1},${y(d.quartiles[1])}
+        H${x(d.x1)}
+      `);
 
-        // g.append("g")
-        //     .attr("fill", "currentColor")
-        //     .attr("fill-opacity", 0.2)
-        //     .attr("stroke", "none")
-        //     .attr("transform", d => `translate(${x((d.x0 + d.x1) / 2)},0)`)
-        //     .selectAll("circle")
-        //     .data(d => d.outliers)
-        //     .join("circle")
-        //     .attr("r", 2)
-        //     .attr("cx", () => (Math.random() - 0.5) * 4)
-        //     .attr("cy", d => y(d.y));
+        g.append("g")
+            .attr("fill", "currentColor")
+            .attr("fill-opacity", 0.2)
+            .attr("stroke", "none")
+            .attr("transform", d => `translate(${x((d.x0 + d.x1) / 2)},0)`)
+            .selectAll("circle")
+            .data(d => d.outliers)
+            .join("circle")
+            .attr("r", 2)
+            .attr("cx", () => (Math.random() - 0.5) * 4)
+            .attr("cy", d => y(d.y));
 
         svg.append("g")
             .call(xAxis);

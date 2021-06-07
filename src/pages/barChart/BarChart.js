@@ -8,7 +8,7 @@ function BarChart({ width, height, data, yAxisTitle }) {
     top: 60,
     bottom: 60,
     left: 60,
-    right: 60,
+    right: 100,
   };
 
 
@@ -161,13 +161,13 @@ function BarChart({ width, height, data, yAxisTitle }) {
       .attr("transform", function (d, i) { return "translate(0," + i * 20 + ")"; });
 
     legend.append("rect")
-      .attr("x", width + 18)
+      .attr("x", width -40)
       .attr("width", 18)
       .attr("height", 18)
       .style("fill", (d, i) => colorScale(i));
 
     legend.append("text")
-      .attr("x", width + 40)
+      .attr("x", width - 10)
       .attr("y", 9)
       .attr("dy", ".35em")
       .style("text-anchor", "start")
