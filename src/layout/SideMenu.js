@@ -121,6 +121,24 @@ export default function SideMenu(props) {
                 </ListItemIcon>
                 <ListItemText primary="Sankey-Gradiant" />
             </ListItem>
+            <ListItem button selected={history.location.pathname === '/collaps-tree'} onClick={() => history.push('/collaps-tree')}>
+                <ListItemIcon>
+                    <ExtensionIcon />
+                </ListItemIcon>
+                <ListItemText primary="Collaps-Tree" />
+            </ListItem>
+            <ListItem button selected={history.location.pathname === '/scatter-plot'} onClick={() => history.push('/scatter-plot')}>
+                <ListItemIcon>
+                    <ExtensionIcon />
+                </ListItemIcon>
+                <ListItemText primary="Scatter-Plot" />
+            </ListItem>
+            <ListItem button selected={history.location.pathname === '/box-plot'} onClick={() => history.push('/box-plot')}>
+                <ListItemIcon>
+                    <ExtensionIcon />
+                </ListItemIcon>
+                <ListItemText primary="Box-Plot" />
+            </ListItem>
         </List>
     );
 }

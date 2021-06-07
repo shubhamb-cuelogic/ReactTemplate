@@ -1,13 +1,17 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import * as d3 from "d3";
-import { sankey, sankeyLinkHorizontal } from "d3-sankey";
+import { sankey, sankeyLinkHorizontal, sankeyLeft, sankeyCenter, sankeyRight, sankeyJustify } from "d3-sankey";
 
+
+let align = [sankeyCenter, sankeyRight, sankeyJustify, sankeyLeft];
 const color = (value) => {
     return d3.interpolateRainbow(value);
 }
 
 export default function SankeyGradiant({ data }) {
-    const ref = useRef(null)
+    const ref = useRef(null);
+    const [index, setIndex] = useState(0);
+
     const margin = {
         top: 1,
         right: 1,
@@ -27,7 +31,7 @@ export default function SankeyGradiant({ data }) {
 
     useEffect(() => {
         draw()
-    })
+    }, [])
 
     const draw = () => {
         var margin = {
@@ -49,6 +53,7 @@ export default function SankeyGradiant({ data }) {
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
 
+        var div = d3.select('.bar-chart-container').append("div").attr("class", "barchart-toolTip");
         const defs = svg.append("defs");
         console.log(defs);
         const gradients = defs.selectAll("linearGradient")
@@ -72,10 +77,13 @@ export default function SankeyGradiant({ data }) {
             .attr("width", d => d.x1 - d.x0)
             .attr("height", d => Math.max(1, d.y1 - d.y0))
             .attr("fill", d => d.color)
-            .attr("opacity", 0.9);
+            .attr("opacity", 0.9)
+            .call(d3.drag())
+            .on('dragstart', () => this.parentNode.appendChild(this))
+            .on('drag', dragmove)
 
 
-        nodes1.append("title").text(d => `${d.name}\n${format(d.value)}`);
+        // nodes1.append("title").text(d => `${d.name}\n${format(d.value)}`);
 
         view.selectAll("text.node")
             .data(nodes)
@@ -139,7 +147,7 @@ export default function SankeyGradiant({ data }) {
             });
 
             links.attr("stroke-opacity", 0)
-                .attr("stroke", 'red')
+                .attr("stroke", node.color)
                 .transition()
                 .duration(duration)
                 .ease(d3.easeLinear)
@@ -156,12 +164,39 @@ export default function SankeyGradiant({ data }) {
                 .each(setDash);
         }
 
-        nodes1.on("mouseover", (e, d) => branchAnimate(d))
-            .on("mouseout", branchClear);
+        nodes1.on("click", (e, d) => branchAnimate(d))
+            .on("mouseover", function (d, i) {
+                div.style("left", d.pageX + 10 + "px");
+                div.style("top", d.pageY - 25 + "px");
+                div.style("display", "inline-block");
+                div.html((i.name) + "<br>" + (i.value) + "KWh");
+                d3.select(this).transition()
+                    .duration('50')
+                    .attr('opacity', '.85')
+            })
+            .on("mouseout", () => {
+                branchClear()
+                div.style("display", "none");
+                d3.select(this).transition()
+                    .duration('50')
+                    .attr('opacity', '1');
+            });
+
+        function dragmove(event, d) {
+            d3.select(this).attr("transform",
+                "translate(" + (
+                    d.x = Math.max(0, Math.min(width - d.dx, event.x))
+                ) + "," + (
+                    d.y = Math.max(0, Math.min(height - d.dy, event.y))
+                ) + ")");
+            sankey.relayout();
+            links1.attr("d", gradientLinks);
+        }
 
     }
 
     const { nodes, links } = sankey()
+        .nodeAlign(sankeyCenter)
         .nodeWidth(15)
         .nodePadding(10)
         .extent([[1, 1], [width - 10, height - 15]])(data);;
@@ -179,11 +214,18 @@ export default function SankeyGradiant({ data }) {
         link.path = { id: 'path' + 1000 + index }
     });
 
-    console.log(nodes, links)
+    // console.log(nodes, links,align)
 
     return (
-        <div>
-            <svg ref={ref}></svg>
+        <div className="bar-chart-container">
+            {/* <select  onChange={(e) => setIndex(e.target.value)}>
+                <option value={0}>select</option>
+                <option value={1}>Center</option>
+                <option value={2}>Left</option>
+                <option value={3}>Right</option>
+                <option value={0}>Justify</option>
+            </select> */}
+            <svg viewBox={'0 0 ' + width + ' ' + height} ref={ref}></svg>
         </div>
     )
 }

@@ -15,7 +15,11 @@ const TreeChart = React.lazy(() => import("../pages/TreeChart/index"));
 const Responcive = React.lazy(() => import("../pages/responsiveBarChart"));
 const SankeyGraph = React.lazy(() => import("../pages/sankey"));
 const StickeyForceGraph = React.lazy(() => import("../pages/stickeyForce"))
-const SankeyGradiant = React.lazy(() => import("../pages/sankey-gradiant"))
+const SankeyGradiant = React.lazy(() => import("../pages/sankey-gradiant"));
+const CollapsTree = React.lazy(() => import("../pages/collaps-tree"));
+const ScatterPlot = React.lazy(() => import("../pages/scater-plot"));
+const BoxPlot = React.lazy(() => import("../pages/box-plot"))
+
 const protectedRoutes = [
     { path: '/bar-chart', component: BarChart },
     { path: '/bar-chart2', component: BarChart2 },
@@ -30,6 +34,9 @@ const protectedRoutes = [
     { path: '/sankey', component: SankeyGraph },
     { path: '/stickey-forceGraph', component: StickeyForceGraph },
     { path: '/sankey-gradiant', component: SankeyGradiant },
+    { path: '/collaps-tree', component: CollapsTree },
+    { path: '/scatter-plot', component: ScatterPlot },
+    { path: '/box-plot', component: BoxPlot },
     {
         path: "/",
         exact: true,
