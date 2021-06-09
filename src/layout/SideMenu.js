@@ -139,6 +139,12 @@ export default function SideMenu(props) {
                 </ListItemIcon>
                 <ListItemText primary="Box-Plot" />
             </ListItem>
+            <ListItem button selected={history.location.pathname === '/funnel'} onClick={() => history.push('/funnel')}>
+                <ListItemIcon>
+                    <ExtensionIcon />
+                </ListItemIcon>
+                <ListItemText primary="Funnel" />
+            </ListItem>
         </List>
     );
 }

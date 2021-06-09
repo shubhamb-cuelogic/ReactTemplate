@@ -71,7 +71,7 @@ function BarChart({ width, height, data, yAxisTitle }) {
       )
       .attr("x", (d) => xScale(d.year))
       .style("fill", (d, i) => colorScale(i))
-      .attr("width", (d) => xScale.bandwidth())
+      .attr("width", (d) => xScale.bandwidth()-10)
       .transition()
       .duration(duration)
       .delay((d, i) => (i * duration) / 10)

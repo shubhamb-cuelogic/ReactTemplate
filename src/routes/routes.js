@@ -18,7 +18,8 @@ const StickeyForceGraph = React.lazy(() => import("../pages/stickeyForce"))
 const SankeyGradiant = React.lazy(() => import("../pages/sankey-gradiant"));
 const CollapsTree = React.lazy(() => import("../pages/collaps-tree"));
 const ScatterPlot = React.lazy(() => import("../pages/scater-plot"));
-const BoxPlot = React.lazy(() => import("../pages/box-plot"))
+const BoxPlot = React.lazy(() => import("../pages/box-plot"));
+const Funnel = React.lazy(() => import("../pages/fuunel-chart"));
 
 const protectedRoutes = [
     { path: '/bar-chart', component: BarChart },
@@ -37,6 +38,7 @@ const protectedRoutes = [
     { path: '/collaps-tree', component: CollapsTree },
     { path: '/scatter-plot', component: ScatterPlot },
     { path: '/box-plot', component: BoxPlot },
+    { path: '/funnel', component: Funnel },
     {
         path: "/",
         exact: true,

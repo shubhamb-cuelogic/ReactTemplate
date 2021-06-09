@@ -112,3 +112,7 @@ body {
   fill: none;
   stroke-opacity: .5;
 }
+
+.chart{
+  background-color:'red'
+}
