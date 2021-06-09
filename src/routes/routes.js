@@ -42,7 +42,7 @@ const protectedRoutes = [
     {
         path: "/",
         exact: true,
-        component: () => <Redirect to="/home" />,
+        component: () => <Redirect to="/bar-chart" />,
     }
 ];
 
