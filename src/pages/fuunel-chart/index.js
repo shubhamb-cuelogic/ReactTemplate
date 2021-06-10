@@ -22,7 +22,8 @@ export default function FunnelChart() {
             { Stage: "Good updates", Amount: 200, step: 3 },
             { Stage: "price upgrade", Amount: 50, step: 4 },
             { Stage: "Value Changes", Amount: 20, step: 5 },
-            { Stage: "sell products", Amount: 1, step: 6 },
+            { Stage: "sell products", Amount: 10, step: 6 },
+            { Stage: "Negotiations", Amount: 5, step: 5 },
         ]
     ];
 
@@ -65,6 +66,7 @@ export default function FunnelChart() {
                 const shortBaseLength = xScale(nextXValue);
                 const skew = (longBaseLength - shortBaseLength) / 2;
                 const height = yScale.bandwidth();
+                console.log(height)
 
                 const x0 = trapezoidStart;
                 const x1 = x0 + longBaseLength;
@@ -73,7 +75,7 @@ export default function FunnelChart() {
 
                 const currentY = yScale(yValues[index]);
 
-                const y0 = currentY + 60;
+                const y0 = currentY + height-18;
                 const y1 = y0;
                 const y2 = currentY + height;
                 const y3 = y2;
@@ -159,10 +161,15 @@ export default function FunnelChart() {
                     .duration('50')
                     .attr('opacity', '1');
             })
-            .on('click', () => setIndex(1))
+            .on('click', () => {
+                trapezoidShape.selectAll('*').remove()
+                div.style("display", "none");
+                setIndex(1)
+
+            })
             .transition()
             .attr("y", (d) => yScale(d.Stage))
-            .attr("height", (d) => yScale.bandwidth() - 18)
+            .attr("height", (d) => yScale.bandwidth() - 20)
             .duration(1000)
             .attr('opacity', 1)
             .delay((d, i) => (i * 1000) / 10)
