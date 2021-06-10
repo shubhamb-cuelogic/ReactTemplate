@@ -149,13 +149,13 @@ export default function FunnelChart() {
                 div.style("top", event.pageY - 35 + "px");
                 div.style("display", "inline-block");
                 div.html((d.Stage) + "<br>" + (d.Amount) + "%");
-                d3.select(this).transition()
+                d3.select(this).transition('over')
                     .duration('50')
                     .attr('opacity', '.65')
             })
             .on("mouseout", function (d) {
                 div.style("display", "none");
-                d3.select(this).transition()
+                d3.select(this).transition('out')
                     .duration('50')
                     .attr('opacity', '1');
             })
@@ -206,10 +206,16 @@ export default function FunnelChart() {
             .data(dataset[index])
             .join("text")
             .classed("pointer", true)
+            .attr('opacity', 0)
             .attr("x", 0)
             .attr("y", (d) => yScale(d.Stage))
             .attr("dy", (d) => yScale.bandwidth() / 2)
+            .transition()
+            .duration(2000)
+            .delay((d, i) => (i * 2000) / 10)
+            .attr('opacity', 1)
             .text((d) => `${d.Stage}`)
+
         //  trapezoidShape.enter().append("svg")
     }, [index])
 
