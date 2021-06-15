@@ -36,7 +36,7 @@ export default function ScatterPlot() {
             .attr("opacity", 0)
         //y-axis
         const y = d3.scaleLinear()
-            .domain([d3.min(data, d => d.death_rate) * 0.9, d3.max(data, d => d.death_rate)])
+            .domain([0, d3.max(data, d => d.death_rate)])
             .range([height, 0])
             .nice()
 

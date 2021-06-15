@@ -60,7 +60,7 @@ function PieChart(props) {
         };
 
         const format = d3.format(".2f");
-        var width = 960,
+        var width = 900,
             height = 500,
             radius = Math.min(width, height) / 2;
 
@@ -78,19 +78,19 @@ function PieChart(props) {
 
         var pie = d3.pie()
             .sort(null);
-
+        
         var arc = d3.arc()
-            .innerRadius(radius - 100)
-            .outerRadius(radius - 20);
+            .innerRadius(radius - 125)
+            .outerRadius(radius - 22);
 
         var svg = d3.select(ref.current)
             .attr('id', 'Donut-chart-render')
-            .attr("width", '100%')
-            .attr("height", '100%')
+            // .attr("width", '100%')
+            // .attr("height", '100%')
             .attr('viewBox', (-width / 2) + ' ' + (-height / 2) + ' ' + width + ' ' + height)
             .attr('preserveAspectRatio', 'xMinYMin')
 
-     
+
         const groupWithData = svg.selectAll("g.arc").data(pie(dataset.apples))
         groupWithData.exit().remove();
 
@@ -192,7 +192,7 @@ function PieChart(props) {
 
     }, [])
 
-    return <svg ref={ref} width="800" height="400">
+    return <svg ref={ref}  >
     </svg>;
 }
 

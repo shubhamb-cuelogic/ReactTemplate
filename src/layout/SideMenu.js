@@ -145,6 +145,24 @@ export default function SideMenu(props) {
                 </ListItemIcon>
                 <ListItemText primary="Funnel" />
             </ListItem>
+            <ListItem button selected={history.location.pathname === '/symentic-table'} onClick={() => history.push('/symentic-table')}>
+                <ListItemIcon>
+                    <ExtensionIcon />
+                </ListItemIcon>
+                <ListItemText primary="Symmentic-table" />
+            </ListItem>
+            <ListItem button selected={history.location.pathname === '/water-fall'} onClick={() => history.push('/water-fall')}>
+                <ListItemIcon>
+                    <ExtensionIcon />
+                </ListItemIcon>
+                <ListItemText primary="Water-Fall" />
+            </ListItem>
+            <ListItem button selected={history.location.pathname === '/bubble-chart'} onClick={() => history.push('/bubble-chart')}>
+                <ListItemIcon>
+                    <ExtensionIcon />
+                </ListItemIcon>
+                <ListItemText primary="Bubble-Chart" />
+            </ListItem>
         </List>
     );
 }

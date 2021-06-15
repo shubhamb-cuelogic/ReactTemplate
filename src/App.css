@@ -75,14 +75,14 @@ body {
 
 .barchart-toolTip {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  position: absolute;
+  position: fixed;
   display: none;
   width: auto;
   height: auto;
-  background: none repeat scroll 0 0 white;
+  background: none repeat scroll 0 0 rgb(247, 244, 244);
   border: 0 none;
   border-radius: 8px 8px 8px 8px;
-  box-shadow: -3px 3px 15px #888888;
+  box-shadow: -3px 3px 15px #202020;
   color: black;
   font: 12px sans-serif;
   padding: 5px;

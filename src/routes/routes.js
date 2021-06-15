@@ -20,6 +20,9 @@ const CollapsTree = React.lazy(() => import("../pages/collaps-tree"));
 const ScatterPlot = React.lazy(() => import("../pages/scater-plot"));
 const BoxPlot = React.lazy(() => import("../pages/box-plot"));
 const Funnel = React.lazy(() => import("../pages/fuunel-chart"));
+const SyemmeticTable = React.lazy(() => import("../pages/symmentic-table"));
+const WaterFall = React.lazy(() => import("../pages/water-fall"));
+const BubbleChart = React.lazy(() => import("../pages/bubble-chart"))
 
 const protectedRoutes = [
     { path: '/bar-chart', component: BarChart },
@@ -39,6 +42,10 @@ const protectedRoutes = [
     { path: '/scatter-plot', component: ScatterPlot },
     { path: '/box-plot', component: BoxPlot },
     { path: '/funnel', component: Funnel },
+    { path: '/symentic-table', component: SyemmeticTable },
+    { path: '/water-fall', component: WaterFall },
+    { path: '/bubble-chart', component: BubbleChart },
+
     {
         path: "/",
         exact: true,

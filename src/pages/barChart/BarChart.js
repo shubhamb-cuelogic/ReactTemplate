@@ -1,6 +1,6 @@
 import * as d3 from "d3";
 import React, { useRef, useEffect, useState } from "react";
-
+import { Button } from 'semantic-ui-react'
 const duration = 500;
 function BarChart({ width, height, data, yAxisTitle }) {
   const ref = useRef();
@@ -71,7 +71,7 @@ function BarChart({ width, height, data, yAxisTitle }) {
       )
       .attr("x", (d) => xScale(d.year))
       .style("fill", (d, i) => colorScale(i))
-      .attr("width", (d) => xScale.bandwidth()-10)
+      .attr("width", (d) => xScale.bandwidth() - 10)
       .transition()
       .duration(duration)
       .delay((d, i) => (i * duration) / 10)
@@ -161,7 +161,7 @@ function BarChart({ width, height, data, yAxisTitle }) {
       .attr("transform", function (d, i) { return "translate(0," + i * 20 + ")"; });
 
     legend.append("rect")
-      .attr("x", width -40)
+      .attr("x", width - 40)
       .attr("width", 18)
       .attr("height", 18)
       .style("fill", (d, i) => colorScale(i));
