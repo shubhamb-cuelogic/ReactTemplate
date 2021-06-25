@@ -8,6 +8,7 @@ const data = [
     { name: "Variable Costs", value: -140000, start: 460000, end: 320000, class: "negative" },
     { name: "Total", end: 320000, start: 0, class: "total" }
 ]
+const duration=1000;
 export default function WaterFall() {
     const ref = useRef(null);
     const margin = {
@@ -66,8 +67,8 @@ export default function WaterFall() {
             .attr('y', innerHeight)
             .attr('transform', `translate(${x.bandwidth() / 4},${0})`)
             .transition()
-            .duration(2000)
-            .delay((d, i) => (i * 2000) / 10)
+            .duration(duration)
+            .delay((d, i) => (i * duration) / 10)
             .attr('y', d => y(Math.max(d.end, d.start)))
             .attr('height', d => Math.abs(y(d.start) - y(d.end)))
 
@@ -97,8 +98,8 @@ export default function WaterFall() {
             .attr('text-anchor', 'middle')
             .attr('x', x.bandwidth() / 2)
             .transition()
-            .duration(2000)
-            .delay((d, i) => (i * 2000) / 10)
+            .duration(duration)
+            .delay((d, i) => (i * duration) / 10)
             .attr('y', d => y(d.end) - 10)
             .attr('x', d => x.bandwidth() / 2)
             .attr('text-anchor', 'middle')
@@ -120,8 +121,8 @@ export default function WaterFall() {
             .attr('x2', x.bandwidth() + x.bandwidth() / 4)
             .attr('y2', d => innerHeight)
             .transition()
-            .duration(2000)
-            .delay((d, i) => (i * 2000) / 10)
+            .duration(duration)
+            .delay((d, i) => (i * duration) / 10)
             .attr('x1', x.bandwidth() / 2 + x.bandwidth() / 4)
             .attr('y1', d => y(d.end))
             .attr('stroke', 'black')

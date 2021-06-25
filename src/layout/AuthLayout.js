@@ -36,10 +36,12 @@ function AuthLayout(props) {
     const classes = useStyles();
     const [sidebar, setSidebar] = useState(true);
     const history = useHistory()
+
     const handleLogout = () => {
         console.log('logout called')
         localStorage.clear("user");
         props.logOutUser();
+        //props.history.push('')
         history.push('/login');
     }
     const toggleSidebar = () => {

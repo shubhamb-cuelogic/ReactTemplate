@@ -13,12 +13,10 @@ class SankeyParent extends React.Component {
     this.setState({ data })
 
     this.measureSVG();
-    window.addEventListener("resize", this.measureSVG);
+
   }
 
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.measureSVG);
-  }
+
 
   measureSVG = () => {
     const { width, height } = this.svgRef.current.getBoundingClientRect();
@@ -35,9 +33,9 @@ class SankeyParent extends React.Component {
     return (
       <div className="App">
         <h1>Sankey diagram</h1>
-        <svg width="100%" height="600" ref={this.svgRef}>
+        <svg viewBox={`0 0 ${800} ${500}`} ref={this.svgRef}>
           {data && (
-            <SankeyGraph data={data} width={width} height={height} />
+            <SankeyGraph data={data} width={800} height={500} />
           )}
         </svg>
       </div>

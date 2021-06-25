@@ -6,7 +6,7 @@ import AuthLayout from "../layout/AuthLayout";
 import { connect } from 'react-redux';
 
 const AppRoute = ({ component: Component, layout: Layout, isAuthProtected, user, ...rest }) => {
-    return <Route {...rest} render={props => {
+    return <Route {...rest}   render={props => {
 
         if (isAuthProtected && !user) {
             return (

@@ -24,6 +24,12 @@ export default function FunnelChart() {
             { Stage: "Value Changes", Amount: 20, step: 5 },
             { Stage: "sell products", Amount: 10, step: 6 },
             { Stage: "Negotiations", Amount: 5, step: 5 },
+        ],
+        [
+            { Stage: "Open Source", Amount: 600, step: 1 },
+            { Stage: "Process", Amount: 325, step: 2 },
+            { Stage: "Good updates", Amount: 200, step: 3 },
+
         ]
     ];
 
@@ -66,7 +72,6 @@ export default function FunnelChart() {
                 const shortBaseLength = xScale(nextXValue);
                 const skew = (longBaseLength - shortBaseLength) / 2;
                 const height = yScale.bandwidth();
-                console.log(height)
 
                 const x0 = trapezoidStart;
                 const x1 = x0 + longBaseLength;
@@ -75,7 +80,7 @@ export default function FunnelChart() {
 
                 const currentY = yScale(yValues[index]);
 
-                const y0 = currentY + height-18;
+                const y0 = currentY + height - 18;
                 const y1 = y0;
                 const y2 = currentY + height;
                 const y3 = y2;
@@ -164,7 +169,7 @@ export default function FunnelChart() {
             .on('click', () => {
                 trapezoidShape.selectAll('*').remove()
                 div.style("display", "none");
-                setIndex(1)
+                setIndex(2)
 
             })
             .transition()
@@ -179,7 +184,7 @@ export default function FunnelChart() {
             .selectAll('path')
             .data(points)
             .join('path')
-            .attr('d', ({ pointsPath }) => pointsPath)
+            .attr('d', ({ pointsPath }, inde) => inde !== dataset[index].length-1 ? pointsPath : '')
             .attr('fill', '#ADD8E6')
             .attr('opacity', 0)
         //.attr("transform", (d) => `translate(${(xScale(d.Amount) / 2)}, 0)`)
@@ -205,9 +210,9 @@ export default function FunnelChart() {
             .attr("y", (d) => yScale(d.Stage))
             .attr("dy", yScale.bandwidth() / 2)
             .attr("fill", "white")
-            .style("font", "14px times")
+            .style("font", (d) => `${xScale(d.Amount) * 0.05}px times`)
             .attr("text-anchor", "middle")
-            .text((d, i) => i !== 5 ? `${d.Stage} (${d.Amount})` : d.Amount)
+            .text((d, i) => `${d.Stage} (${d.Amount})`)
 
         trapezoidShape.selectAll("text.pointer")
             .data(dataset[index])

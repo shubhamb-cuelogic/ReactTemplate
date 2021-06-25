@@ -1,0 +1,133 @@
+{
+    "nodes": [
+        
+       
+        {
+            "name": "Bio-conversion",
+            "type": "Retailer"
+        },
+        {
+            "name": "Liquid",
+            "type": "Search"
+        },
+        {
+            "name": "Losses",
+            "type": "Search"
+        },
+        {
+            "name": "Agricultural 'waste'",
+            "type": "Conversions"
+        },
+        {
+            "name": "Solid",
+            "type": "Retailer"
+        },
+        {
+            "name": "Gas",
+            "type":"Conversions"
+        },
+        {
+            "name": "Biofuel imports",
+            "type":"Social Media"
+        },
+        {
+            "name": "Biomass imports",
+            "type": "Product Page"
+        },
+        {
+            "name": "Coal imports",
+            "type": "Retailer"
+        },
+        {
+            "name": "Coal",
+            "type": "Brand.com"
+        },
+        {
+            "name": "Coal reserves",
+            "type": "Social Media"
+        },
+        {
+            "name": "District heating",
+            "type": "Conversions"
+        },
+        {
+            "name": "Industry",
+            "type": "Search"
+        },
+        {
+            "name": "Heating and cooling - commercial",
+            "type":"Brand.com"
+        },
+        {
+            "name": "Heating and cooling - homes",
+            "type":"Conversions"
+        }
+    ],
+    "links": [
+        {
+            "source": 0,
+            "target": 1,
+            "value": 50.729
+        },
+        {
+            "source": 2,
+            "target": 3,
+            "value": 10.597
+        },
+        {
+            "source": 1,
+            "target": 3,
+            "value": 20.862
+        },
+        {
+            "source": 3,
+            "target": 4,
+            "value": 10.322
+        },
+        {
+            "source": 4,
+            "target": 5,
+            "value": 41.144
+        },
+        {
+            "source": 5,
+            "target": 6,
+            "value": 35
+        },
+        {
+            "source": 7,
+            "target": 8,
+            "value": 35
+        },
+        {
+            "source": 8,
+            "target": 9,
+            "value": 11.606
+        },
+        {
+            "source": 9,
+            "target": 10,
+            "value": 33.965
+        },
+        {
+            "source": 10,
+            "target": 11,
+            "value": 75.571
+        },
+        {
+            "source": 11,
+            "target": 12,
+            "value": 10.639
+        },
+        {
+            "source": 13,
+            "target": 14,
+            "value": 46.184
+        },
+        {
+            "source": 6,
+            "target": 14,
+            "value": 80.726
+        }
+    ]
+}

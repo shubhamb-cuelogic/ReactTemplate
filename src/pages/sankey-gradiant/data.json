@@ -143,6 +143,9 @@
         },
         {
             "name": "Wind"
+        },
+        {
+            "name": "Extra loss"
         }
     ],
     "links": [
@@ -484,6 +487,11 @@
         {
             "source": 47,
             "target": 15,
+            "value": 289.366
+        },
+        {
+            "source": 3,
+            "target": 48,
             "value": 289.366
         }
     ]

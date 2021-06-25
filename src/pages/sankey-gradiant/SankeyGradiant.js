@@ -50,8 +50,9 @@ export default function SankeyGradiant({ data }) {
 
 
         const svg = d3.select(ref.current)
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
+        .attr('viewBox',`0 0 ${width} ${height}`)
+            // .attr("width", width + margin.left + margin.right)
+            // .attr("height", height + margin.top + margin.bottom)
 
         var div = d3.select('.bar-chart-container').append("div").attr("class", "barchart-toolTip");
         const defs = svg.append("defs");

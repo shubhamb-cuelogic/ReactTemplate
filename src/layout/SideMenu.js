@@ -163,6 +163,12 @@ export default function SideMenu(props) {
                 </ListItemIcon>
                 <ListItemText primary="Bubble-Chart" />
             </ListItem>
+            <ListItem button selected={history.location.pathname === '/cdg-sankey'} onClick={() => history.push('/cdg-sankey')}>
+                <ListItemIcon>
+                    <ExtensionIcon />
+                </ListItemIcon>
+                <ListItemText primary="CDG-Sankey" />
+            </ListItem>
         </List>
     );
 }

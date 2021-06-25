@@ -1,0 +1,521 @@
+{
+    "links": [
+        {
+            "source": "Coal",
+            "target": "Asia",
+            "value": "29"
+        },
+        {
+            "source": "Coal",
+            "target": "North America",
+            "value": "5"
+        },
+        {
+            "source": "Coal",
+            "target": "Europe",
+            "value": "4"
+        },
+        {
+            "source": "Coal",
+            "target": "Middle East",
+            "value": "1"
+        },
+        {
+            "source": "Coal",
+            "target": "Latin America - Carribean",
+            "value": "1.0"
+        },
+        {
+            "source": "Coal",
+            "target": "Africa",
+            "value": "1"
+        },
+        {
+            "source": "Coal",
+            "target": "Oceania",
+            "value": "1.4"
+        },
+        {
+            "source": "Oil",
+            "target": "Asia",
+            "value": "10"
+        },
+        {
+            "source": "Oil",
+            "target": "North America",
+            "value": "6.2"
+        },
+        {
+            "source": "Oil",
+            "target": "Europe",
+            "value": "6"
+        },
+        {
+            "source": "Oil",
+            "target": "Middle East",
+            "value": "3"
+        },
+        {
+            "source": "Oil",
+            "target": "Latin America - Carribean",
+            "value": "2"
+        },
+        {
+            "source": "Oil",
+            "target": "Africa",
+            "value": "1"
+        },
+        {
+            "source": "Oil",
+            "target": "Oceania",
+            "value": "0.6"
+        },
+        {
+            "source": "Gas",
+            "target": "Asia",
+            "value": "4"
+        },
+        {
+            "source": "Gas",
+            "target": "North America",
+            "value": "5"
+        },
+        {
+            "source": "Gas",
+            "target": "Europe",
+            "value": "6.3"
+        },
+        {
+            "source": "Gas",
+            "target": "Middle East",
+            "value": "3"
+        },
+        {
+            "source": "Gas",
+            "target": "Latin America - Carribean",
+            "value": "1"
+        },
+        {
+            "source": "Gas",
+            "target": "Africa",
+            "value": "1"
+        },
+        {
+            "source": "Gas",
+            "target": "Oceania",
+            "value": "0.5"
+        },
+        {
+            "source": "Cement",
+            "target": "Asia",
+            "value": "5"
+        },
+        {
+            "source": "Cement",
+            "target": "North America",
+            "value": "0.5"
+        },
+        {
+            "source": "Cement",
+            "target": "Europe",
+            "value": "1"
+        },
+        {
+            "source": "Cement",
+            "target": "Middle East",
+            "value": "0.8"
+        },
+        {
+            "source": "Cement",
+            "target": "Latin America - Carribean",
+            "value": "0.5"
+        },
+        {
+            "source": "Cement",
+            "target": "Africa",
+            "value": "0.5"
+        },
+        {
+            "source": "Cement",
+            "target": "Oceania",
+            "value": "0.5"
+        },
+        {
+            "source": "Gas Flaring",
+            "target": "Asia",
+            "value": "0.5"
+        },
+        {
+            "source": "Gas Flaring",
+            "target": "North America",
+            "value": "0.5"
+        },
+        {
+            "source": "Gas Flaring",
+            "target": "Europe",
+            "value": "0.5"
+        },
+        {
+            "source": "Gas Flaring",
+            "target": "Middle East",
+            "value": "0.5"
+        },
+        {
+            "source": "Gas Flaring",
+            "target": "Latin America - Carribean",
+            "value": "0.5"
+        },
+        {
+            "source": "Gas Flaring",
+            "target": "Africa",
+            "value": "0.5"
+        },
+        {
+            "source": "Gas Flaring",
+            "target": "Oceania",
+            "value": "0.5"
+        },
+        {
+            "source": "Africa",
+            "target": "South Africa",
+            "value": "2"
+        },
+        {
+            "source": "Africa",
+            "target": "Egypt",
+            "value": "1"
+        },
+        {
+            "source": "Africa",
+            "target": "Algeria",
+            "value": "1"
+        },
+        {
+            "source": "Asia",
+            "target": "China",
+            "value": "12"
+        },
+        {
+            "source": "Asia",
+            "target": "India",
+            "value": "7"
+        },
+        {
+            "source": "Asia",
+            "target": "Japan",
+            "value": "6"
+        },
+        {
+            "source": "Asia",
+            "target": "South Korea",
+            "value": "6"
+        },
+        {
+            "source": "Asia",
+            "target": "Indonesia",
+            "value": "5.0"
+        },
+        {
+            "source": "Asia",
+            "target": "Thailand",
+            "value": "4"
+        },
+        {
+            "source": "Asia",
+            "target": "Kazakhstan",
+            "value": "3"
+        },
+        {
+            "source": "Asia",
+            "target": "Taiwan",
+            "value": "2.0"
+        },
+        {
+            "source": "Asia",
+            "target": "Malaysia",
+            "value": "1.5"
+        },
+        {
+            "source": "Asia",
+            "target": "Vietnam",
+            "value": "1.0"
+        },
+        {
+            "source": "Asia",
+            "target": "Pakistan",
+            "value": "0.6"
+        },
+        {
+            "source": "Asia",
+            "target": "Uzbekistan",
+            "value": "0.6"
+        },
+        {
+            "source": "Middle East",
+            "target": "Iran",
+            "value": "1"
+        },
+        {
+            "source": "Middle East",
+            "target": "Saudi Arabia",
+            "value": "3.3"
+        },
+        {
+            "source": "Middle East",
+            "target": "Turkey",
+            "value": "1"
+        },
+        {
+            "source": "Middle East",
+            "target": "UAE",
+            "value": "1"
+        },
+        {
+            "source": "Middle East",
+            "target": "Iraq",
+            "value": "1"
+        },
+        {
+            "source": "Middle East",
+            "target": "Kuwait",
+            "value": "1"
+        },
+        {
+            "source": "Europe",
+            "target": "Russian Federation",
+            "value": "1.8"
+        },
+        {
+            "source": "Europe",
+            "target": "Germany",
+            "value": "1.8"
+        },
+        {
+            "source": "Europe",
+            "target": "United Kingdom",
+            "value": "1.8"
+        },
+        {
+            "source": "Europe",
+            "target": "Italy",
+            "value": "1.8"
+        },
+        {
+            "source": "Europe",
+            "target": "France",
+            "value": "1.8"
+        },
+        {
+            "source": "Europe",
+            "target": "Poland",
+            "value": "1.8"
+        },
+        {
+            "source": "Europe",
+            "target": "Ukraine",
+            "value": "1.8"
+        },
+        {
+            "source": "Europe",
+            "target": "Spain",
+            "value": "1.8"
+        },
+        {
+            "source": "Europe",
+            "target": "Netherlands",
+            "value": "1.8"
+        },
+        {
+            "source": "Europe",
+            "target": "Czech Republic",
+            "value": "0.3"
+        },
+        {
+            "source": "North America",
+            "target": "United States",
+            "value": "10"
+        },
+        {
+            "source": "North America",
+            "target": "Canada",
+            "value": "3.5"
+        },
+        {
+            "source": "North America",
+            "target": "Mexico",
+            "value": "3.5"
+        },
+        {
+            "source": "Latin America - Carribean",
+            "target": "Brazil",
+            "value": "2"
+        },
+        {
+            "source": "Latin America - Carribean",
+            "target": "Venezuela",
+            "value": "1"
+        },
+        {
+            "source": "Latin America - Carribean",
+            "target": "Argentina",
+            "value": "1"
+        },
+        {
+            "source": "Oceania",
+            "target": "Australia",
+            "value": "3.5"
+        }
+    ],
+    "nodes": [
+        {
+            "name": "Coal"
+        },
+        {
+            "name": "Oil"
+        },
+        {
+            "name": "Gas"
+        },
+        {
+            "name": "Cement"
+        },
+        {
+            "name": "Gas Flaring"
+        },
+        {
+            "name": "Asia"
+        },
+        {
+            "name": "Middle East"
+        },
+        {
+            "name": "North America"
+        },
+        {
+            "name": "Europe"
+        },
+        {
+            "name": "Latin America - Carribean"
+        },
+        {
+            "name": "Africa"
+        },
+        {
+            "name": "Oceania"
+        },
+        {
+            "name": "South Africa"
+        },
+        {
+            "name": "Egypt"
+        },
+        {
+            "name": "Algeria"
+        },
+        {
+            "name": "Canada"
+        },
+        {
+            "name": "Mexico"
+        },
+        {
+            "name": "Spain"
+        },
+        {
+            "name": "Ukraine"
+        },
+        {
+            "name": "Poland"
+        },
+        {
+            "name": "France"
+        },
+        {
+            "name": "Italy"
+        },
+        {
+            "name": "United Kingdom"
+        },
+        {
+            "name": "Germany"
+        },
+        {
+            "name": "Russian Federation"
+        },
+        {
+            "name": "Netherlands"
+        },
+        {
+            "name": "UAE"
+        },
+        {
+            "name": "Turkey"
+        },
+        {
+            "name": "Saudi Arabia"
+        },
+        {
+            "name": "Iran"
+        },
+        {
+            "name": "Kuwait"
+        },
+        {
+            "name": "Brazil"
+        },
+        {
+            "name": "Venezuela"
+        },
+        {
+            "name": "Argentina"
+        },
+        {
+            "name": "Iraq"
+        },
+        {
+            "name": "Czech Republic"
+        },
+        {
+            "name": "China"
+        },
+        {
+            "name": "India"
+        },
+        {
+            "name": "Japan"
+        },
+        {
+            "name": "Indonesia"
+        },
+        {
+            "name": "Thailand"
+        },
+        {
+            "name": "South Korea"
+        },
+        {
+            "name": "Kazakhstan"
+        },
+        {
+            "name": "Taiwan"
+        },
+        {
+            "name": "Malaysia"
+        },
+        {
+            "name": "Vietnam"
+        },
+        {
+            "name": "Pakistan"
+        },
+        {
+            "name": "Uzbekistan"
+        },
+        {
+            "name": "United States"
+        },
+        {
+            "name": "Australia"
+        }
+    ]
+}
